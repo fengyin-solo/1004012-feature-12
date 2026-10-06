@@ -5,6 +5,35 @@ import type { ActionResult, EntryRow, ModuleMeta, OverviewResult, PageResult } f
 // 会写进数据的「往回走」动作：命中就把这条记录标成异常态，看板上能一眼看出来。
 const NEGATIVE_ACTIONS = ['撤销', '作废', '拒绝', '驳回', '停用', '忽略', '下线', '回滚']
 
+// 流量监测点完成校准后，关联监测设备要同步结束「待校准」，
+// 这样监测设备页的待校准数量会跟着校准结果变化，不用人工再对一遍。
+function completeDeviceCalibration(flowRow: EntryRow): number {
+  const deviceCode = String(flowRow['关联设备编号'] ?? '').trim()
+  if (!deviceCode) {
+    return 0
+  }
+  const devices = listRows('monitor_device')
+  let synced = 0
+  const next = devices.map((row) => {
+    if (String(row['设备编号']) === deviceCode && String(row.status) === '待校准') {
+      synced += 1
+      const period = String(flowRow['监测时段'] ?? '').slice(0, 10)
+      return {
+        ...row,
+        status: '运行中',
+        pending: true,
+        abnormal: false,
+        最近校准: period || row['最近校准'],
+      }
+    }
+    return row
+  })
+  if (synced > 0) {
+    saveRows('monitor_device', next)
+  }
+  return synced
+}
+
 export function moduleMeta(key: string): ModuleMeta {
   const meta = MODULE_BY_KEY.get(key)
   if (!meta) {
@@ -53,7 +82,14 @@ export function runAction(key: string, id: number, action: string): ActionResult
   const next = [...rows]
   next[index] = updated
   saveRows(key, next)
-  return { ok: true, message: `${meta.entity}已${action}，当前状态「${target}」` }
+  let message = `${meta.entity}已${action}，当前状态「${target}」`
+  if (key === 'flow_monitor' && action === '申请校准') {
+    const synced = completeDeviceCalibration(updated)
+    if (synced > 0) {
+      message += `；${synced} 台关联监测设备校准完成，监测设备页待校准数量已同步`
+    }
+  }
+  return { ok: true, message }
 }
 
 export function resetModule(key: string): PageResult {

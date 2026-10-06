@@ -85,7 +85,12 @@ const meta = moduleMeta('monitor_device')
 const columns = ["设备编号", "设备类型", "安装位置", "监测参数", "安装日期", "校准周期", "最近校准", "设备状态"]
 const actions = ["确认安装", "申请校准", "上报故障"]
 const statuses = ["待安装", "运行中", "待校准", "已故障"]
-const stats = [{"label": "运行中设备", "value": 0}, {"label": "待校准设备", "value": 0}, {"label": "故障设备", "value": 0}]
+// 统计卡片跟着列表数据走：流量监测点校准完成后，这里的待校准数量会同步变化
+const stats = computed(() => [
+  { label: '运行中设备', value: rows.value.filter((row) => String(row.status) === '运行中').length },
+  { label: '待校准设备', value: rows.value.filter((row) => String(row.status) === '待校准').length },
+  { label: '故障设备', value: rows.value.filter((row) => String(row.status) === '已故障').length },
+])
 
 const rows = ref<EntryRow[]>([])
 const total = ref(0)

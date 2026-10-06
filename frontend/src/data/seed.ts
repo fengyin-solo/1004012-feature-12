@@ -1,7 +1,13 @@
+import FLOW_MONITOR_SEED from './flow-monitor-seed.json'
 import type { EntryRow } from './types'
 
+// 流量监测、监测设备两个模块的样例数据由流量监测本地流程维护：
+// frontend/scripts/flow-monitor/pipeline.mjs 在构建前准备并校验 flow-monitor-seed.json，
+// 重跑只更新当前时段，历史时段不会被覆盖。
+const FLOW_MONITOR_ROWS = FLOW_MONITOR_SEED as Record<string, EntryRow[]>
+
 // 示例数据：首次打开时播种，之后浏览器里的改动优先，重置才会回到这份。
-export const SEED_ROWS: Record<string, EntryRow[]> = {
+const BASE_ROWS: Record<string, EntryRow[]> = {
   "pipeline": [
     {
       "id": 1,
@@ -442,50 +448,6 @@ export const SEED_ROWS: Record<string, EntryRow[]> = {
       "监测结论": "水质监测样例3"
     }
   ],
-  "flow_monitor": [
-    {
-      "id": 1,
-      "status": "在线",
-      "pending": true,
-      "abnormal": false,
-      "监测点编号": "FLOW-0001",
-      "监测点位": "流量监测样例1",
-      "监测时段": "2026-09-01",
-      "瞬时流量": "流量监测样例1",
-      "累计流量": "流量监测样例1",
-      "水位标高": "流量监测样例1",
-      "流速": "流量监测样例1",
-      "数据状态": "流量监测样例1"
-    },
-    {
-      "id": 2,
-      "status": "离线",
-      "pending": true,
-      "abnormal": true,
-      "监测点编号": "FLOW-0002",
-      "监测点位": "流量监测样例2",
-      "监测时段": "2026-09-02",
-      "瞬时流量": "流量监测样例2",
-      "累计流量": "流量监测样例2",
-      "水位标高": "流量监测样例2",
-      "流速": "流量监测样例2",
-      "数据状态": "流量监测样例2"
-    },
-    {
-      "id": 3,
-      "status": "数据异常",
-      "pending": false,
-      "abnormal": false,
-      "监测点编号": "FLOW-0003",
-      "监测点位": "流量监测样例3",
-      "监测时段": "2026-09-03",
-      "瞬时流量": "流量监测样例3",
-      "累计流量": "流量监测样例3",
-      "水位标高": "流量监测样例3",
-      "流速": "流量监测样例3",
-      "数据状态": "流量监测样例3"
-    }
-  ],
   "emergency": [
     {
       "id": 1,
@@ -706,50 +668,6 @@ export const SEED_ROWS: Record<string, EntryRow[]> = {
       "档案状态": "设施档案样例3"
     }
   ],
-  "monitor_device": [
-    {
-      "id": 1,
-      "status": "待安装",
-      "pending": true,
-      "abnormal": false,
-      "设备编号": "MONI-0001",
-      "设备类型": "监测设备样例1",
-      "安装位置": "监测设备样例1",
-      "监测参数": "监测设备样例1",
-      "安装日期": "2026-09-01",
-      "校准周期": "监测设备样例1",
-      "最近校准": "监测设备样例1",
-      "设备状态": "监测设备样例1"
-    },
-    {
-      "id": 2,
-      "status": "运行中",
-      "pending": true,
-      "abnormal": true,
-      "设备编号": "MONI-0002",
-      "设备类型": "监测设备样例2",
-      "安装位置": "监测设备样例2",
-      "监测参数": "监测设备样例2",
-      "安装日期": "2026-09-02",
-      "校准周期": "监测设备样例2",
-      "最近校准": "监测设备样例2",
-      "设备状态": "监测设备样例2"
-    },
-    {
-      "id": 3,
-      "status": "待校准",
-      "pending": false,
-      "abnormal": false,
-      "设备编号": "MONI-0003",
-      "设备类型": "监测设备样例3",
-      "安装位置": "监测设备样例3",
-      "监测参数": "监测设备样例3",
-      "安装日期": "2026-09-03",
-      "校准周期": "监测设备样例3",
-      "最近校准": "监测设备样例3",
-      "设备状态": "监测设备样例3"
-    }
-  ],
   "contractor": [
     {
       "id": 1,
@@ -795,3 +713,5 @@ export const SEED_ROWS: Record<string, EntryRow[]> = {
     }
   ],
 }
+
+export const SEED_ROWS: Record<string, EntryRow[]> = { ...BASE_ROWS, ...FLOW_MONITOR_ROWS }

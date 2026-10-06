@@ -6,9 +6,13 @@
   "repoKind": "frontend-only",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/flow-monitor/pipeline.mjs prepare",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "flow:run": "node scripts/flow-monitor/pipeline.mjs run",
+    "flow:prepare": "node scripts/flow-monitor/pipeline.mjs prepare",
+    "flow:clean": "node scripts/flow-monitor/pipeline.mjs clean"
   },
   "dependencies": {
     "pinia": "^2.1.7",
