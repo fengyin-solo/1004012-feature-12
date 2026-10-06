@@ -85,3 +85,7 @@ desktop.ini
 *.db
 *.pid
 *.seed
+
+# 流量监测流水线的本地产物与历史台账（由 scripts/flow-pipeline.mjs 生成）
+.flow-pipeline/
+frontend/src/generated/

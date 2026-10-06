@@ -27,6 +27,14 @@ export type PageResult = {
   size: number
 }
 
+export type FlowReading = {
+  pointCode: string
+  period: string
+  rangeStart: string
+  rangeEnd: string
+  values: Record<string, number> | null
+}
+
 export type ActionResult = {
   ok: boolean
   message: string

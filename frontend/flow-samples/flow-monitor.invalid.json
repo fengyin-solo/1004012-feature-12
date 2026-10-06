@@ -1,0 +1,43 @@
+{
+  "period": "2026/10/06",
+  "rangeStart": "2026-10-06 00:00",
+  "rangeEnd": "2026-10-05 08:00",
+  "metrics": {
+    "瞬时流量": { "unit": "L/s", "min": 0, "max": 500 },
+    "累计流量": { "unit": "m³", "min": 0, "max": 20000 },
+    "水位标高": { "unit": "m", "min": 0, "max": 6 }
+  },
+  "devices": [
+    { "code": "MONI-F001", "type": "超声波流量计", "location": "中山路", "params": "瞬时流量", "installDate": "2026-05-10", "cycle": "12个月", "baseStatus": "运行中" },
+    { "code": "MONI-F001", "type": "电磁流量计", "location": "建设路", "params": "瞬时流量", "installDate": "2026-05-12", "cycle": "12个月", "baseStatus": "运行中" }
+  ],
+  "points": [
+    {
+      "code": "FLOW-0001",
+      "name": "编号重复测点",
+      "deviceCode": "MONI-F999",
+      "reported": true,
+      "values": { "瞬时流量": 128.4, "累计流量": 5320.6, "水位标高": 2.15, "流速": 0.86 }
+    },
+    {
+      "code": "FLOW-0001",
+      "name": "编号重复测点二",
+      "deviceCode": "MONI-F001",
+      "reported": true,
+      "values": { "瞬时流量": 128.4, "累计流量": "5320", "水位标高": 2.15, "流速": 0.86 }
+    },
+    {
+      "code": "FLOW-0003",
+      "name": "指标超界测点",
+      "deviceCode": "MONI-F001",
+      "reported": true,
+      "values": { "瞬时流量": 9999, "累计流量": 5320.6, "水位标高": 2.15, "流速": 0.86 }
+    }
+  ],
+  "history": [
+    { "pointCode": "FLOW-0001", "period": "2026-10-04", "rangeStart": "2026-10-04 00:00", "rangeEnd": "2026-10-04 08:00", "values": { "瞬时流量": 120.1, "累计流量": 5100.2, "水位标高": 2.08, "流速": 0.82 } },
+    { "pointCode": "FLOW-0001", "period": "2026-10-04", "rangeStart": "2026-10-04 00:00", "rangeEnd": "2026-10-04 08:00", "values": { "瞬时流量": 121.1, "累计流量": 5101.2, "水位标高": 2.09, "流速": 0.83 } },
+    { "pointCode": "FLOW-7777", "period": "2026-10-04", "rangeStart": "2026-10-04 00:00", "rangeEnd": "2026-10-04 08:00", "values": { "瞬时流量": 120.1, "累计流量": 5100.2, "水位标高": 2.08, "流速": 0.82 } },
+    { "pointCode": "FLOW-0001", "period": "2026-10-07", "rangeStart": "2026-10-07 00:00", "rangeEnd": "2026-10-07 08:00", "values": { "瞬时流量": 120.1, "累计流量": 5100.2, "水位标高": 2.08, "流速": 0.82 } }
+  ]
+}

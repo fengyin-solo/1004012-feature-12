@@ -5,10 +5,15 @@
   "type": "module",
   "repoKind": "frontend-only",
   "scripts": {
+    "predev": "node scripts/flow-pipeline.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/flow-pipeline.mjs",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "flow:pipeline": "node scripts/flow-pipeline.mjs",
+    "flow:reset": "node scripts/flow-pipeline.mjs --reset",
+    "flow:verify": "node scripts/verify-flow.mjs"
   },
   "dependencies": {
     "pinia": "^2.1.7",

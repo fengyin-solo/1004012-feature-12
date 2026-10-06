@@ -1,0 +1,64 @@
+{
+  "period": "2026-10-06",
+  "rangeStart": "2026-10-06 00:00",
+  "rangeEnd": "2026-10-06 08:00",
+  "metrics": {
+    "瞬时流量": { "unit": "L/s", "min": 0, "max": 1000 },
+    "累计流量": { "unit": "m³", "min": 0, "max": 20000 },
+    "水位标高": { "unit": "m", "min": 0, "max": 6 },
+    "流速": { "unit": "m/s", "min": 0, "max": 3 }
+  },
+  "thresholds": {
+    "瞬时流量": { "warnMin": 20, "warnMax": 500 },
+    "累计流量": { "warnMin": 0, "warnMax": 18000 },
+    "水位标高": { "warnMin": 0.2, "warnMax": 5.5 },
+    "流速": { "warnMin": 0.1, "warnMax": 2.5 }
+  },
+  "devices": [
+    { "code": "MONI-F001", "type": "超声波流量计", "location": "中山路与人民路交口主干管", "params": "瞬时流量/累计流量", "installDate": "2026-05-10", "cycle": "12个月", "baseStatus": "运行中" },
+    { "code": "MONI-F002", "type": "电磁流量计", "location": "建设大街下穿箱涵进口", "params": "瞬时流量/水位标高", "installDate": "2026-05-12", "cycle": "12个月", "baseStatus": "运行中" },
+    { "code": "MONI-F003", "type": "多普勒流量计", "location": "滨河路泵站前池", "params": "流速/水位标高", "installDate": "2026-06-02", "cycle": "6个月", "baseStatus": "运行中" },
+    { "code": "MONI-F004", "type": "超声波流量计", "location": "解放广场南侧支管", "params": "瞬时流量/累计流量", "installDate": "2026-07-18", "cycle": "12个月", "baseStatus": "运行中" },
+    { "code": "MONI-Q001", "type": "液位计", "location": "东环调蓄池", "params": "水位标高", "installDate": "2026-04-20", "cycle": "12个月", "baseStatus": "已故障" }
+  ],
+  "points": [
+    {
+      "code": "FLOW-0001",
+      "name": "中山路交口流量测点",
+      "deviceCode": "MONI-F001",
+      "reported": true,
+      "values": { "瞬时流量": 128.4, "累计流量": 5320.6, "水位标高": 2.15, "流速": 0.86 }
+    },
+    {
+      "code": "FLOW-0002",
+      "name": "建设大街箱涵流量测点",
+      "deviceCode": "MONI-F002",
+      "reported": false,
+      "values": null
+    },
+    {
+      "code": "FLOW-0003",
+      "name": "滨河路泵站前池测点",
+      "deviceCode": "MONI-F003",
+      "reported": true,
+      "values": { "瞬时流量": 612.8, "累计流量": 5480.3, "水位标高": 2.42, "流速": 0.92 }
+    },
+    {
+      "code": "FLOW-0004",
+      "name": "解放广场支管测点",
+      "deviceCode": "MONI-F004",
+      "reported": true,
+      "values": { "瞬时流量": 96.7, "累计流量": 4388.1, "水位标高": 1.88, "流速": 0.71 }
+    }
+  ],
+  "history": [
+    { "pointCode": "FLOW-0001", "period": "2026-10-04", "rangeStart": "2026-10-04 00:00", "rangeEnd": "2026-10-04 08:00", "values": { "瞬时流量": 120.1, "累计流量": 5100.2, "水位标高": 2.08, "流速": 0.82 } },
+    { "pointCode": "FLOW-0002", "period": "2026-10-04", "rangeStart": "2026-10-04 00:00", "rangeEnd": "2026-10-04 08:00", "values": null },
+    { "pointCode": "FLOW-0003", "period": "2026-10-04", "rangeStart": "2026-10-04 00:00", "rangeEnd": "2026-10-04 08:00", "values": { "瞬时流量": 135.6, "累计流量": 5200.0, "水位标高": 2.1, "流速": 0.85 } },
+    { "pointCode": "FLOW-0004", "period": "2026-10-04", "rangeStart": "2026-10-04 00:00", "rangeEnd": "2026-10-04 08:00", "values": { "瞬时流量": 96.4, "累计流量": 4300.5, "水位标高": 1.85, "流速": 0.7 } },
+    { "pointCode": "FLOW-0001", "period": "2026-10-05", "rangeStart": "2026-10-05 00:00", "rangeEnd": "2026-10-05 08:00", "values": { "瞬时流量": 126.8, "累计流量": 5210.4, "水位标高": 2.12, "流速": 0.84 } },
+    { "pointCode": "FLOW-0002", "period": "2026-10-05", "rangeStart": "2026-10-05 00:00", "rangeEnd": "2026-10-05 08:00", "values": { "瞬时流量": 118.2, "累计流量": 4986.7, "水位标高": 2.01, "流速": 0.8 } },
+    { "pointCode": "FLOW-0003", "period": "2026-10-05", "rangeStart": "2026-10-05 00:00", "rangeEnd": "2026-10-05 08:00", "values": { "瞬时流量": 132.0, "累计流量": 5305.9, "水位标高": 2.16, "流速": 0.87 } },
+    { "pointCode": "FLOW-0004", "period": "2026-10-05", "rangeStart": "2026-10-05 00:00", "rangeEnd": "2026-10-05 08:00", "values": { "瞬时流量": 98.1, "累计流量": 4342.8, "水位标高": 1.9, "流速": 0.72 } }
+  ]
+}
